@@ -59,7 +59,7 @@ public class PhotoImpl extends BaseDaoImpl implements IPhotoDao {
 	
 
 		Iterator<PhotoFeedResponse> iteratorOfFeed = new Jongo(MongoUtils.getDB())
-				.getCollection(MongoConstants.CN_PHOTOCREDENTIALS).find("{lastModifiedTime:{$gte:#}}", time).limit(5)
+				.getCollection(MongoConstants.CN_PHOTOCREDENTIALS).find("{lastModifiedTime:{$gte:#}}", time).limit(20)
 				.as(PhotoFeedResponse.class).iterator();
 
 		List<PhotoFeedResponse> list = THUtils.iteratorToList(iteratorOfFeed);
