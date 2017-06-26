@@ -21,7 +21,7 @@ public class PhotoImpl extends BaseDaoImpl implements IPhotoDao {
 	@Override
 	public PhotoFeedResponse postPhotography(UploadPhotoVo uploadPhoto) {
 
-		UserDetail userDetails = getProfile(uploadPhoto.user.profileId);
+		UserDetail userDetails = getUserDetails(uploadPhoto.user.profileId);
 		uploadPhoto.user = userDetails.user;
 		WriteResult result = new Jongo(MongoUtils.getDB()).getCollection(MongoConstants.CN_PHOTOCREDENTIALS)
 				.insert(uploadPhoto);
@@ -47,7 +47,7 @@ public class PhotoImpl extends BaseDaoImpl implements IPhotoDao {
 
 		Iterator<PhotoFeedResponse> iteratorOfFeed = new Jongo(MongoUtils.getDB())
 				.getCollection(MongoConstants.CN_PHOTOCREDENTIALS).find("{lastModifiedTime:{$lte:#}}", time).limit(2)
-				.as(PhotoFeedResponse.class).iterator();
+				.sort("{lastModifiedTime :-1}").as(PhotoFeedResponse.class).iterator();
 
 		List<PhotoFeedResponse> list = THUtils.iteratorToList(iteratorOfFeed);
 
@@ -60,7 +60,7 @@ public class PhotoImpl extends BaseDaoImpl implements IPhotoDao {
 
 		Iterator<PhotoFeedResponse> iteratorOfFeed = new Jongo(MongoUtils.getDB())
 				.getCollection(MongoConstants.CN_PHOTOCREDENTIALS).find("{lastModifiedTime:{$gte:#}}", time).limit(20)
-				.as(PhotoFeedResponse.class).iterator();
+				.sort("{lastModifiedTime :-1}").as(PhotoFeedResponse.class).iterator();
 
 		List<PhotoFeedResponse> list = THUtils.iteratorToList(iteratorOfFeed);
 

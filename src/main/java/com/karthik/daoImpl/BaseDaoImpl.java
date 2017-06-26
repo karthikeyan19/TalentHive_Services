@@ -11,7 +11,7 @@ import com.karthik.vo.UserDetail;
 public class BaseDaoImpl implements IBaseDao {
 
 	@Override
-	public UserDetail getProfile(String profileId) {
+	public UserDetail getUserDetails(String profileId) {
         
 		return new Jongo(MongoUtils.getDB()).getCollection(MongoConstants.CN_PROFILECREDENTIALS)
 		.findOne("{user.profileId:#}", profileId).projection("{user:1}").as(UserDetail.class);

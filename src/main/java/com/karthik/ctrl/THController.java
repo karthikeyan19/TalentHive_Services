@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.karthik.services.PhotoService;
 import com.karthik.services.THServices;
+import com.karthik.vo.GoogleLoginVo;
 import com.karthik.vo.LoginVo;
+import com.karthik.vo.ProfileVo;
 import com.karthik.vo.photography.PhotoFeedResponse;
 import com.karthik.vo.photography.UploadPhotoVo;
 
@@ -27,11 +29,17 @@ THServices thServices= new THServices();
 		return thServices.userLogin(login);
 	}
 	
+	@RequestMapping(value = "/googleLogin", method = RequestMethod.POST, headers = "Accept=application/json")
+	public Map<String,Object> googleLogin(@RequestBody GoogleLoginVo login) {
+	    System.out.println(login.googleTokenId);
+		return thServices.googleLogin(login.googleTokenId,login.userName);
+	}
 	
 	
-	
-	
-
-	
+	@RequestMapping(value="/profile/{userName}",method =  RequestMethod.GET,headers = "Accept=application/json")
+	public ProfileVo getProfile(@PathVariable("userName") String userName){
+	    
+	return thServices.getProfile(userName);
+	}	
 	
 }

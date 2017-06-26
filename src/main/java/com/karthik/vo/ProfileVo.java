@@ -3,7 +3,7 @@ package com.karthik.vo;
 public class ProfileVo {
 	
 	
-	    public UserDetail user;
+	    public UserVo user;
 		public String encodedProfilePic;
 	    public String coverImageUrl;
 	    public String encodedCoverImage;
@@ -12,10 +12,12 @@ public class ProfileVo {
 	    public String email;
 	    public String mobileNo;
 	    public String gender;
-	    public UserDetail getUser() {
+	    public long followersCount;
+	    public long followingCount;
+	    public UserVo getUser() {
 			return user;
 		}
-		public void setUser(UserDetail user) {
+		public void setUser(UserVo user) {
 			this.user = user;
 		}
 	    public String getEncodedProfilePic() {
