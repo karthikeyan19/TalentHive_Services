@@ -5,6 +5,6 @@ import com.karthik.vo.UserDetail;
 
 public interface IBaseDao {
 
-	UserDetail getProfile(String profileId);
+	UserDetail getUserDetails(String profileId);
 	
 }

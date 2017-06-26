@@ -2,7 +2,7 @@ package com.karthik.constants;
 
 public class MongoConstants {
 	
-	public static final String IP_ADDRESS="127.0.0.1:27017";
+	public static final String IP_ADDRESS="192.168.43.58:27017";
 	public static final String DB_NAME="TalentHiveDB";
 	
 	//CollectionNames

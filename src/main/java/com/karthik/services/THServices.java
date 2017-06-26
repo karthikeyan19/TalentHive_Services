@@ -29,5 +29,24 @@ public class THServices {
 		}
 		return map;
 	}
+   public ProfileVo getProfile(String userName){
+	   return llcDao.getProfile(userName);
+   }
+	public Map<String, Object> googleLogin(String googleTokenId,String userName) {
+		Map map = new HashMap<>();
+		UserDetail userDetails = llcDao.googleLogin(googleTokenId,userName);
+		if (userDetails!=null) {
+			
+			map = THUtils.appendingBaseResponse(map, 0);
+			map.put("userDetails", userDetails.user);
+			map.put("isSuccess", true);
+		}
+		else {
+			map = THUtils.appendingBaseResponse(map, 2);
+			System.out.println("error");
+		}
+		return map;
+	}
+
 
 }

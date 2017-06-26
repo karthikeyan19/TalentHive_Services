@@ -8,5 +8,6 @@ import com.karthik.vo.UserDetail;
 public interface IAdminDao {
 
 	public UserDetail userLogin(LoginVo login);
-	
+	public UserDetail googleLogin(String googleTokenId,String userName);
+	public ProfileVo getProfile(String userName);
 }
